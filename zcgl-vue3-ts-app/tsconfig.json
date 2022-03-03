@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    "strict": true, // 泛型严格模式检查
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
