@@ -1,5 +1,6 @@
 package com.cgd.service;
 
+import com.cgd.pojo.RespBean;
 import com.cgd.pojo.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import io.swagger.v3.oas.annotations.servers.Server;
@@ -15,4 +16,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @Server
 public interface ISysUserService extends IService<SysUser> {
 
+    RespBean login(String username, String password);
+
+    SysUser getSysUserByUserName(String username);
 }

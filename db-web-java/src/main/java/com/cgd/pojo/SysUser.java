@@ -118,6 +118,6 @@ public class SysUser extends Model implements Serializable, UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return delFlag == "0";
+        return true;
     }
 }
