@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 9999
   servlet:
     context-path: /
 
@@ -28,3 +28,14 @@ mybatis-plus:
       logic-not-delete-value: 1
       # 删除后
       logic-delete-value: 0
+
+
+jwt:
+  # JWT存储的请求头
+  tokenHeader: Authorization
+  # JWT 加解密使用的密钥
+  secret: yeb-secret
+  # JWT的超期限时间（60*60*24）
+  expiration: 604800
+  # JWT 负载中拿到开头
+  tokenHead: Bearer

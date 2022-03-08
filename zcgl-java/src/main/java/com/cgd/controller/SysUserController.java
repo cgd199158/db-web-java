@@ -1,14 +1,12 @@
 package com.cgd.controller;
 
 
+import com.cgd.entity.LoginBody;
 import com.cgd.entity.SysUser;
 import com.cgd.service.ISysUserService;
+import com.cgd.service.impl.SysUserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-03-03
  */
 @RestController
-@RequestMapping("/sys-user")
 public class SysUserController {
     @Autowired
     private ISysUserService sysUserService;
@@ -27,5 +24,14 @@ public class SysUserController {
     public SysUser getSysUser(){
         SysUser sysUser = sysUserService.getById(1);
         return sysUser;
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginBody loginBody) throws Exception {
+       SysUser sysUser =  sysUserService.login(loginBody);
+       if(null == sysUser){
+           return "没有当前用户!";
+       }
+       return sysUser.toString();
     }
 }

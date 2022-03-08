@@ -1,4 +1,4 @@
-package com.example.conf;
+package com.cgd;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
@@ -36,10 +36,10 @@ public class GeneratorCodeConfig {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("astupidcoder");
+        gc.setAuthor("cgd");
         gc.setOpen(false);
         //实体属性 Swagger2 注解
-        gc.setSwagger2(false);
+        gc.setSwagger2(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -54,7 +54,7 @@ public class GeneratorCodeConfig {
         PackageConfig pc = new PackageConfig();
 //        pc.setModuleName(scanner("模块名"));
         pc.setParent("com.cgd");
-        pc.setEntity("entity");
+        pc.setEntity("pojo");
         pc.setMapper("mapper");
         pc.setService("service");
         pc.setServiceImpl("service.impl");
@@ -114,12 +114,14 @@ public class GeneratorCodeConfig {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("com.baomidou.mybatisplus.extension.activerecord.Model");
+        //lombok模型
         strategy.setEntityLombokModel(true);
+        //生成@RestController 控制器
         strategy.setRestControllerStyle(true);
 
         strategy.setEntityLombokModel(true);
         // 公共父类
-//        strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
+        // strategy.setSuperControllerClass("com.baomidou.ant.common.BaseController");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));

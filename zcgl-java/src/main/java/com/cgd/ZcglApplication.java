@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@MapperScan("com.cgd.mapper")
 public class ZcglApplication {
     public static void main(String[] args) {
         SpringApplication.run(ZcglApplication.class, args);

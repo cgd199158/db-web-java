@@ -1,6 +1,9 @@
 package com.cgd.controller;
 
 
+import com.cgd.config.security.JwtTokenUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-03-05
  */
 @RestController
-@RequestMapping("/sys-user")
 public class SysUserController {
+
+    @Autowired
+    JwtTokenUtil jwtTokenUtil;
+
+    @GetMapping("/test")
+    public void test(){
+    }
+
+
 
 }

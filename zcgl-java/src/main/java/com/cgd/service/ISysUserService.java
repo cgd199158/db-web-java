@@ -14,5 +14,5 @@ import org.apache.catalina.User;
  * @since 2022-03-03
  */
 public interface ISysUserService extends IService<SysUser> {
-    SysUser login(LoginBody loginBody);
+    SysUser login(LoginBody loginBody) throws Exception;
 }
