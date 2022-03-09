@@ -49,9 +49,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      */
     @Override
     public RespBean login(String username, String password) {
+
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         System.out.println("userDetails.getPassword() = " + userDetails.getPassword());
         System.out.println("password = " + password);
+        System.out.println("passwordEncoder.encode(password) = " + passwordEncoder.encode(password));
         if (null == userDetails || !passwordEncoder.matches(password, userDetails.getPassword())) {
             return RespBean.error("用户名或密码不正确!");
         }
