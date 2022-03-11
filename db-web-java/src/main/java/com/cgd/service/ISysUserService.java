@@ -3,7 +3,7 @@ package com.cgd.service;
 import com.cgd.pojo.RespBean;
 import com.cgd.pojo.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
-import io.swagger.v3.oas.annotations.servers.Server;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
  * @author cgd
  * @since 2022-03-05
  */
-@Server
+@Service
 public interface ISysUserService extends IService<SysUser> {
 
     RespBean login(String username, String password);
