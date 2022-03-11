@@ -6,9 +6,11 @@ import com.cgd.pojo.SysUser;
 import com.cgd.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,6 +27,9 @@ import javax.servlet.Filter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private SysUserMapper sysUserMapper;
+
+    // @Autowired
+    // private ISysUserService sysUserService;
     @Resource
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     @Resource
@@ -33,6 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        super.configure(web);
     }
 
     // control + o
@@ -73,6 +83,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
                 SysUser sysUser = sysUserMapper.selectOne(new QueryWrapper<SysUser>().eq("user_name", username));
+                // SysUser sysUser = sysUserService.getSysUserByUserName(username);
                 System.out.println("sysUser = " + sysUser);
                 if(null == sysUser){
                     return null;
