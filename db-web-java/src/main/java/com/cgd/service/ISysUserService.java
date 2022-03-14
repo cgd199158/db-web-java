@@ -5,6 +5,8 @@ import com.cgd.pojo.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * <p>
  * 用户信息表 服务类
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface ISysUserService extends IService<SysUser> {
 
-    RespBean login(String username, String password);
+    RespBean login(String username, String password, String code, HttpServletRequest request);
 
     SysUser getSysUserByUserName(String username);
 }

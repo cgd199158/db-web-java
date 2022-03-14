@@ -1,6 +1,7 @@
 package com.cgd.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.cgd.config.security.JwtTokenUtil;
 import com.cgd.pojo.RespBean;
 import com.cgd.pojo.SysUser;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -48,12 +50,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return
      */
     @Override
-    public RespBean login(String username, String password) {
-
+    public RespBean login(String username, String password, String code, HttpServletRequest request) {
+        //首先判断验证码是否正确
+        String captcha = (String) request.getSession().getAttribute("captcha");
+        if(!(StringUtils.isNotEmpty(captcha) && captcha.toLowerCase(Locale.ROOT).equals(code.toLowerCase(Locale.ROOT)))){
+            return RespBean.error("验证码填写错误!");
+        }
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        System.out.println("userDetails.getPassword() = " + userDetails.getPassword());
-        System.out.println("password = " + password);
-        System.out.println("passwordEncoder.encode(password) = " + passwordEncoder.encode(password));
         if (null == userDetails || !passwordEncoder.matches(password, userDetails.getPassword())) {
             return RespBean.error("用户名或密码不正确!");
         }
