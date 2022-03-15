@@ -4,6 +4,7 @@ import com.cgd.pojo.RespBean;
 import com.cgd.pojo.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author cgd
  * @since 2022-03-05
  */
+@Transactional
 @Service
 public interface ISysUserService extends IService<SysUser> {
 
